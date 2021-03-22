@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "Real Estate ROI Calculator",
+    "version": "0.0.0.3",
+    "description": "Calculate ROI for investment properties",
+
+    "icons": { "16": "extension_toolbar_icon16.png",
+        "48": "extension_toolbar_icon48.png",
+       "128": "extension_toolbar_icon128.png"
+     },
+    "browser_action": {
+        "default_icon": {
+            "16": "extension_toolbar_icon16.png",
+            "32": "extension_toolbar_icon32.png",
+            "48": "extension_toolbar_icon48.png",
+            "128": "extension_toolbar_icon128.png"
+        },
+        "default_popup": "popup.html",
+        "default_title": "ROI Calculator"
+    }
+}
+
