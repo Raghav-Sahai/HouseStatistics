@@ -2,7 +2,6 @@ body {
     margin: 0;
     padding:0;
     color: #707070;
-    
 }
 .top-container {
     text-align: center;
@@ -18,7 +17,6 @@ body {
     margin: 0;
     padding: 1em 0 0.5em;
 }
-
 .top-container span {
     font-size: 40px;
     font-weight: bolder;
@@ -47,6 +45,7 @@ body {
     font-size: 16px;
     font-weight: bold;
 }
+
 .down-interest input {
     padding: 5px;
     margin: 5px 0;
@@ -57,7 +56,6 @@ body {
     font-size: 16px;
     font-weight: bold;
 }
-
 .home-value-style input {
     padding: 5px;
     margin: 5px 0;
