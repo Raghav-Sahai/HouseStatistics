@@ -1,0 +1,53 @@
+{
+    "name": "roicalculator",
+    "version": "2.0.0",
+    "description": "A real estate roi calculator chrome extension",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Raghav-Sahai/ROI-Calculator"
+    },
+    "scripts": {
+        "dev": "NODE_ENV=development webpack --progress --watch",
+        "build": "NODE_ENV=production webpack --progress && md5sum dist/*.js dist/*.html > dist/checksums.md5"
+    },
+    "dependencies": {
+        "@babel/core": "7.10.1",
+        "@babel/preset-env": "7.10.1",
+        "babel-loader": "^8.1.0",
+        "babel-plugin-transform-class-properties": "6.24.1",
+        "babel-plugin-transform-object-rest-spread": "6.26.0",
+        "@vue/babel-preset-app": "4.4.1",
+        "webpack": "4.43.0",
+        "zip-webpack-plugin": "3.0.0",
+        "clean-webpack-plugin": "3.0.0",
+        "copy-webpack-plugin": "6.0.0",
+        "html-webpack-plugin": "4.3.0",
+        "file-loader": "6.0.0",
+        "style-loader": "1.2.1",
+        "node-sass": "4.14.1",
+        "sass": "1.26.7",
+        "sass-loader": "9.0.3",
+        "source-map-loader": "1.0.1",
+        "vue": "2.6.14",
+        "vue-loader": "15.9.2",
+        "generate-json-webpack-plugin": "0.3.1"
+    },
+    "devDependencies": {
+        "webpack-cli": "^4.9.2",
+        "vue-template-compiler": "2.6.14"
+    },
+    "babel": {
+        "presets": [
+            [
+                "@vue/app",
+                {
+                    "useBuiltIns": "entry"
+                }
+            ]
+        ],
+        "plugins": [
+            "transform-class-properties"
+        ]
+    }
+}
