@@ -1,5 +1,7 @@
 # Real Estate ROI Calculator
 
+Calculate return on investment (ROI) for any Real Estate investment property - useful for real estate agents and investors
+
 ## Development
 
 - This project uses [node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)
