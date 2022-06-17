@@ -2,7 +2,7 @@ const AppInfo = require("./app.json");
 
 module.exports = {
   manifest_version: 3,
-  name: "Real Estate ROI Calculator DEV",
+  name: "Real Estate ROI Calculator",
   description: "Calculate return on investment (ROI) for any Real Estate investment property - useful for real estate agents and investors",
   author: "Raghav",
   version: AppInfo.version,

@@ -2,7 +2,12 @@
   <div class="input-container">
     <label class="input-label">{{ label }}</label>
 
-    <input class="input" type="text" :placeholder="placeholder" v-model="text" />
+    <input 
+      class="input" 
+      type="text" 
+      :placeholder="placeholder"
+      v-model="text"
+    />
 
     <p class="input-error">{{ error }}</p>
   </div>
@@ -12,21 +17,21 @@
 export default {
   name: "TextInput",
   props: {
-	id: String,
+	  id: String,
     label: String,
     validator: Function,
-	placeholder: String | null,
+    defaultValue: Number,
+	  placeholder: String | null,
   },
   data() {
     return {
-      defaultText: "",
       error: "",
     };
   },
   computed: {
     text: {
       get() {
-        return this.defaultText;
+        return this.defaultValue;
       },
       set(value) {
         this.$emit("input", {id: this.id, value});

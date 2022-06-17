@@ -1,7 +1,7 @@
 {
     "name": "roicalculator",
     "version": "2.0.0",
-    "description": "A real estate roi calculator chrome extension",
+    "description": "Real estate roi calculator chrome extension",
     "license": "MIT",
     "repository": {
         "type": "git",

@@ -17,7 +17,7 @@ const config = {
     entry: {
       // background: ["./src/background/"],
       popup: "./src/popup/",
-      // "content-script": "./src/content/",
+      "content": "./src/content/index.js",
       // "inject-script": "./src/content/injectScript.js",
     },
     output: {

@@ -8,6 +8,7 @@
 				:id="textInput.id"
 				:label="textInput.label"
 				:placeholder="textInput.placeholder"
+				:defaultValue="textInput.defaultValue"
 				:validator="textInput.validator"
 				@input="handleInputChange"
 			/>
@@ -22,85 +23,94 @@ import calculateRoi from './utils/roi'
 export default {
 	data() {
 		return {
-			loanTerm: 0,
-			homeValue: 0,
-			downpaymentPercent: 0,
-			interestRate: 0,
-			rentPerMonth: 0,
-			propertyTaxPerMonth: 0,
+			loanTerm: 30,
+			homeValue: 100000,
+			downpaymentPercent: 20,
+			interestRate: 4.5,
+			rentPerMonth: 1000,
+			propertyTaxPerMonth: 125,
 			hoaPerMonth: 0,
-			homeInsurancePerMonth: 0,
-			renovationClosing: 0,
-			textInputArray: [
+			homeInsurancePerMonth: 66,
+			renovationClosing: 3000
+		}
+	},
+	computed: {
+		textInputArray() {
+			return [
 				{
 					id: "homeValue",
 					label: "Home Value ($)",
 					placeholder: "Home value",
+					defaultValue: 100000,
 					validator: () => true
 				},
 				{
 					id: "downpaymentPercent",
 					label: "Downpayment Percent (%)",
 					placeholder: "Downpayment percent",
+					defaultValue: this.downpaymentPercent,
 					validator: () => true
 				},
 				{
 					id: "interestRate",
 					label: "Intrest Rate (%)",
 					placeholder: "Interest rate",
+					defaultValue: this.interestRate,
 					validator: () => true
 				},
 				{
 					id: "rentPerMonth",
 					label: "Rent Per Month ($)",
 					placeholder: "rent/ month",
+					defaultValue: this.rentPerMonth,
 					validator: () => true
 				},
 				{
 					id: "propertyTaxPerMonth",
 					label: "Property Tax Per Month ($)",
 					placeholder: "Property tax/ month",
+					defaultValue: this.propertyTaxPerMonth,
 					validator: () => true
 				},
 				{
 					id: "hoaPerMonth",
 					label: "HOA Per Month ($)",
 					placeholder: "HOA/ month",
+					defaultValue: this.hoaPerMonth,
 					validator: () => true
 				},
 				{
 					id: "homeInsurancePerMonth",
 					label: "Home Insurance Per Month ($)",
 					placeholder: "Home Insurance/ month",
+					defaultValue: this.homeInsurancePerMonth,
 					validator: () => true
 				},
 				{
 					id: "renovationClosing",
 					label: "Renovations + Closing ($)",
 					placeholder: "Renovation + closing costs",
+					defaultValue: this.renovationClosing,
 					validator: () => true
 				},
 			]
-		}
-	},
-	computed: {
+		},
 		roi() {
 			return calculateRoi(
-				this.loanTerm,
-				this.homeValue,
-				this.downpaymentPercent,
-				this.interestRate,
-				this.rentPerMonth,
-				this.propertyTaxPerMonth,
-				this.hoaPerMonth,
-				this.homeInsurancePerMonth,
-				this.renovationClosing,
+				parseFloat(this.loanTerm),
+				parseFloat(this.homeValue),
+				parseFloat(this.downpaymentPercent),
+				parseFloat(this.interestRate),
+				parseFloat(this.rentPerMonth),
+				parseFloat(this.propertyTaxPerMonth),
+				parseFloat(this.hoaPerMonth),
+				parseFloat(this.homeInsurancePerMonth),
+				parseFloat(this.renovationClosing),
 			)
 		}
 	},
 	methods: {
 		handleInputChange(input) {
-			console.log(input)
 			this[input.id] = input.value
 		}
 	},
@@ -109,9 +119,5 @@ export default {
 </script>
 
 <style>
-
-#app {
-	padding: 1em 1em
-}
 
 </style>

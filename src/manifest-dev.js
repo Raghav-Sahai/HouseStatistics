@@ -12,7 +12,7 @@ module.exports = {
     48: "icons/48.png",
     128: "icons/128.png",
   },
-  permissions: [],
+  permissions: ["activeTab"],
   action: {
     default_icon: {
       16: "icons/16.png",
@@ -26,5 +26,12 @@ module.exports = {
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'",
   },
+  "content_scripts": [
+    {
+      "matches": ["https://*.zillow.com/homedetails/*"],
+      "js": ["content.js"],
+      "run_at": "document_end",
+    }
+  ],
   web_accessible_resources: [],
 };
