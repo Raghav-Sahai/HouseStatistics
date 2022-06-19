@@ -12,7 +12,7 @@ module.exports = {
     48: "icons/48.png",
     128: "icons/128.png",
   },
-  permissions: ["activeTab"],
+  permissions: ["activeTab", "storage"],
   action: {
     default_icon: {
       16: "icons/16.png",

@@ -1,6 +1,9 @@
 <template>
   <div id="app">
       <h1>ROI Calculator</h1>
+	  		<ZillowSync 
+				@zillowSync="handleZillowSync"
+			/>
 			<h2>{{ roi }} ROI</h2>
 			<TextInput
 				v-for="(textInput, index) in textInputArray"
@@ -18,6 +21,7 @@
 <script>
 
 import TextInput from './components/TextInput'
+import ZillowSync from './components/ZillowSync.vue'
 import calculateRoi from './utils/roi'
 
 export default {
@@ -41,7 +45,7 @@ export default {
 					id: "homeValue",
 					label: "Home Value ($)",
 					placeholder: "Home value",
-					defaultValue: 100000,
+					defaultValue: this.homeValue,
 					validator: () => true
 				},
 				{
@@ -112,9 +116,15 @@ export default {
 	methods: {
 		handleInputChange(input) {
 			this[input.id] = input.value
+		},
+		handleZillowSync(object) {
+			this.homeValue = object.homeValue
+			this.propertyTaxPerMonth = object.propertyTaxPerMonth
+			this.homeInsurancePerMonth = object.homeInsurancePerMonth
+			this.hoaPerMonth = object.hoaPerMonth
 		}
 	},
-	components: { TextInput }
+	components: { TextInput, ZillowSync }
 }
 </script>
 
