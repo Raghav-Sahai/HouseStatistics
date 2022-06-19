@@ -1,28 +1,34 @@
 <template>
-  <div id="app">
-      <h1>ROI Calculator</h1>
-	  		<ZillowSync 
-				@zillowSync="handleZillowSync"
-			/>
-			<h2>{{ roi }} ROI</h2>
-			<TextInput
-				v-for="(textInput, index) in textInputArray"
-				:key="index"
-				:id="textInput.id"
-				:label="textInput.label"
-				:placeholder="textInput.placeholder"
-				:defaultValue="textInput.defaultValue"
-				:validator="textInput.validator"
-				@input="handleInputChange"
-			/>
-  </div>
+	<div id="app">
+		<div class="header">
+			<h1>HouseStatistics Calculator</h1>
+			<ZillowSync @zillowSync="handleZillowSync" />
+		</div>
+		<hr />
+		<DataDisplay :data="calculatedData" />
+		<hr />
+		<div class="container">
+			<div class="left">
+				<TextInput v-for="(textInput, index) in textInputArray.slice(0, 4)" :key="index" :id="textInput.id"
+					:label="textInput.label" :placeholder="textInput.placeholder" :defaultValue="textInput.defaultValue"
+					:validator="textInput.validator" @input="handleInputChange" />
+			</div>
+			<div class="right">
+				<TextInput v-for="(textInput, index) in textInputArray.slice(4, 8)" :key="index" :id="textInput.id"
+					:label="textInput.label" :placeholder="textInput.placeholder" :defaultValue="textInput.defaultValue"
+					:validator="textInput.validator" @input="handleInputChange" />
+			</div>
+		</div>
+
+	</div>
 </template>
 
 <script>
 
 import TextInput from './components/TextInput'
 import ZillowSync from './components/ZillowSync.vue'
-import calculateRoi from './utils/roi'
+import DataDisplay from './components/DataDisplay.vue'
+import calculate from './utils/calculate'
 
 export default {
 	data() {
@@ -99,8 +105,8 @@ export default {
 				},
 			]
 		},
-		roi() {
-			return calculateRoi(
+		calculatedData() {
+			const { roi, downpaymentValue, monthlyCashFlow, payment } = calculate(
 				parseFloat(this.loanTerm),
 				parseFloat(this.homeValue),
 				parseFloat(this.downpaymentPercent),
@@ -111,6 +117,26 @@ export default {
 				parseFloat(this.homeInsurancePerMonth),
 				parseFloat(this.renovationClosing),
 			)
+			return [
+				{
+					label: "ROI (%)",
+					value: roi
+				},
+				{
+					label: "Downpayment",
+					value: `$${downpaymentValue}`
+				},
+				{
+					label: "Cash flow/mo",
+					value: `$${monthlyCashFlow}`
+				},
+				{
+					label: "Payment/mo",
+					value: `$${payment}`
+				}
+			]
+
+
 		}
 	},
 	methods: {
@@ -124,10 +150,21 @@ export default {
 			this.hoaPerMonth = object.hoaPerMonth
 		}
 	},
-	components: { TextInput, ZillowSync }
+	components: { TextInput, ZillowSync, DataDisplay }
 }
 </script>
 
-<style>
+<style scoped>
+h1 {
+	margin: 0;
+}
 
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.container {
+	display: flex;
+}
 </style>
