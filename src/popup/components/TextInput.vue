@@ -43,7 +43,8 @@ export default {
 
 <style>
 .input-container {
-  margin: 5px 5px
+  margin: 5px 5px;
+  display: block;
 }
 
 .input {

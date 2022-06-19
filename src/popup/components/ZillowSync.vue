@@ -25,6 +25,12 @@ export default {
     color: white;
     padding: 3px 5px;
     font-weight: 650;
-    border-radius: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+}
+.zillow-sync:hover {
+    outline: 0;
+    background-color: rgb(5, 86, 199);
 }
 </style>

@@ -1,12 +1,18 @@
 <template>
 	<div id="app">
 		<div class="header">
-			<h1>HouseStatistics Calculator</h1>
+			<h1>HouseStatistics</h1>
 			<ZillowSync @zillowSync="handleZillowSync" />
 		</div>
-		<hr />
 		<DataDisplay :data="calculatedData" />
 		<hr />
+			<DropdownInput 
+				id="loanTerm"
+				label="Loan Type"
+				:options="loanTermOptions"
+				:defaultValue="loanTerm"
+				@dropdownInput="handleInputChange"
+			/>
 		<div class="container">
 			<div class="left">
 				<TextInput v-for="(textInput, index) in textInputArray.slice(0, 4)" :key="index" :id="textInput.id"
@@ -26,8 +32,9 @@
 <script>
 
 import TextInput from './components/TextInput'
-import ZillowSync from './components/ZillowSync.vue'
-import DataDisplay from './components/DataDisplay.vue'
+import DropdownInput from './components/DropdownInput'
+import ZillowSync from './components/ZillowSync'
+import DataDisplay from './components/DataDisplay'
 import calculate from './utils/calculate'
 
 export default {
@@ -41,7 +48,11 @@ export default {
 			propertyTaxPerMonth: 125,
 			hoaPerMonth: 0,
 			homeInsurancePerMonth: 66,
-			renovationClosing: 3000
+			renovationClosing: 3000,
+			loanTermOptions: [
+				{ text: "30 year fixed", value: 30 },
+				{ text: "15 year fixed", value: 15 }
+			]
 		}
 	},
 	computed: {
@@ -62,13 +73,6 @@ export default {
 					validator: () => true
 				},
 				{
-					id: "interestRate",
-					label: "Intrest Rate (%)",
-					placeholder: "Interest rate",
-					defaultValue: this.interestRate,
-					validator: () => true
-				},
-				{
 					id: "rentPerMonth",
 					label: "Rent Per Month ($)",
 					placeholder: "rent/ month",
@@ -82,6 +86,13 @@ export default {
 					defaultValue: this.propertyTaxPerMonth,
 					validator: () => true
 				},
+					{
+						id: "interestRate",
+						label: "Intrest Rate (%)",
+						placeholder: "Interest rate",
+						defaultValue: this.interestRate,
+						validator: () => true
+					},
 				{
 					id: "hoaPerMonth",
 					label: "HOA Per Month ($)",
@@ -150,11 +161,16 @@ export default {
 			this.hoaPerMonth = object.hoaPerMonth
 		}
 	},
-	components: { TextInput, ZillowSync, DataDisplay }
+	components: { TextInput, ZillowSync, DataDisplay, DropdownInput }
 }
 </script>
 
-<style scoped>
+<style>
+#app {
+	color: #0a2540;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
 h1 {
 	margin: 0;
 }
@@ -163,7 +179,6 @@ h1 {
 	display: flex;
 	justify-content: space-between;
 }
-
 .container {
 	display: flex;
 }

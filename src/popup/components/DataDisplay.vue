@@ -26,13 +26,13 @@ export default {
 .grid-item {
     margin: 5px 0;
     background-color: rgba(255, 255, 255, 0.8);
-    font-size: 1.3em;
+    font-size: 1.2em;
 }
 
 .label {
     font-weight: 650;
 }
 .value {
-
+    margin-top: 5px;
 }
 </style>
