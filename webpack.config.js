@@ -159,7 +159,7 @@ const config = {
         new webpack.SourceMapDevToolPlugin({}),
         new ZipPlugin({
           path: "..",
-          filename: "roicalculator.zip",
+          filename: "HouseStatistics.zip",
         })
       );
     }

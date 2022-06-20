@@ -14,7 +14,7 @@ export default {
   props: {
     id: String,
     label: String,
-    validator: String,
+    validator: Function,
     errorText: String,
     defaultValue: Number,
     placeholder: String | null,

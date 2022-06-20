@@ -3,7 +3,7 @@ const AppInfo = require("./app.json");
 module.exports = {
   manifest_version: 3,
   name: "HouseStatistics DEV",
-  description: "Calculate return on investment (ROI) for any Real Estate investment property - useful for real estate agents and investors",
+  description: "Calculate rental property metrics for any real estate investment property - useful for real estate agents and investors",
   author: "Raghav",
   version: AppInfo.version,
   icons: {
@@ -12,7 +12,7 @@ module.exports = {
     48: "icons/48.png",
     128: "icons/128.png",
   },
-  permissions: ["activeTab"],
+  permissions: [],
   action: {
     default_icon: {
       16: "icons/16.png",

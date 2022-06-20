@@ -58,7 +58,7 @@ export default {
 					label: "Home Value ($)",
 					placeholder: "Home value",
 					defaultValue: this.homeValue,
-					validator: () => '^[0-9]*$',
+					validator: () => true,
 					errorText: "Invalid value"
 				},
 				{
