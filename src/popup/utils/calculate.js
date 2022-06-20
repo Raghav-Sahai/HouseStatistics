@@ -25,11 +25,12 @@ export default function calculate(
     const ROI = 100 * annualReturn / outOfPocketExpense
 
     return {
-        roi: round(ROI, 2),
-        downpaymentValue: round(downpaymentValue, 2),
-        monthlyCashFlow: round(monthlyCashFlow, 2),
-        payment: round(PMT, 2)
+        roi: nullCheck(round(ROI, 2)),
+        downpaymentValue: nullCheck(round(downpaymentValue, 2)),
+        monthlyCashFlow: nullCheck(round(monthlyCashFlow, 2)),
+        payment: nullCheck(round(PMT, 2))
     }
 }
 
 const round = (value, decimals) => Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+const nullCheck = (value) => isNaN(value) ? "Error" : value

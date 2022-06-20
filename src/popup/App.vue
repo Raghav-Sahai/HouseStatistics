@@ -6,13 +6,8 @@
 		</div>
 		<DataDisplay :data="calculatedData" />
 		<hr />
-			<DropdownInput 
-				id="loanTerm"
-				label="Loan Type"
-				:options="loanTermOptions"
-				:defaultValue="loanTerm"
-				@dropdownInput="handleInputChange"
-			/>
+		<DropdownInput id="loanTerm" label="Loan Type" :options="loanTermOptions" :defaultValue="loanTerm"
+			@dropdownInput="handleInputChange" />
 		<div class="container">
 			<div class="left">
 				<TextInput v-for="(textInput, index) in textInputArray.slice(0, 4)" :key="index" :id="textInput.id"
@@ -25,7 +20,7 @@
 					:validator="textInput.validator" @input="handleInputChange" />
 			</div>
 		</div>
-
+		<a class="feature-request" @click="navigateFeatureRequest">Feature Request?</a>
 	</div>
 </template>
 
@@ -63,56 +58,64 @@ export default {
 					label: "Home Value ($)",
 					placeholder: "Home value",
 					defaultValue: this.homeValue,
-					validator: () => true
+					validator: () => '^[0-9]*$',
+					errorText: "Invalid value"
 				},
 				{
 					id: "downpaymentPercent",
 					label: "Downpayment Percent (%)",
 					placeholder: "Downpayment percent",
 					defaultValue: this.downpaymentPercent,
-					validator: () => true
+					validator: () => true,
+					errorText: "Invalid value, must be number betweem 0 and 100"
 				},
 				{
 					id: "rentPerMonth",
 					label: "Rent Per Month ($)",
 					placeholder: "rent/ month",
 					defaultValue: this.rentPerMonth,
-					validator: () => true
+					validator: () => true,
+					errorText: "Invalid value"
 				},
 				{
 					id: "propertyTaxPerMonth",
 					label: "Property Tax Per Month ($)",
 					placeholder: "Property tax/ month",
 					defaultValue: this.propertyTaxPerMonth,
-					validator: () => true
+					validator: () => true,
+					errorText: "Invalid value"
 				},
-					{
-						id: "interestRate",
-						label: "Intrest Rate (%)",
-						placeholder: "Interest rate",
-						defaultValue: this.interestRate,
-						validator: () => true
-					},
+				{
+					id: "interestRate",
+					label: "Intrest Rate (%)",
+					placeholder: "Interest rate",
+					defaultValue: this.interestRate,
+					validator: () => true,
+					errorText: "Invalid value"
+				},
 				{
 					id: "hoaPerMonth",
 					label: "HOA Per Month ($)",
 					placeholder: "HOA/ month",
 					defaultValue: this.hoaPerMonth,
-					validator: () => true
+					validator: () => true,
+					errorText: "Invalid value"
 				},
 				{
 					id: "homeInsurancePerMonth",
 					label: "Home Insurance Per Month ($)",
 					placeholder: "Home Insurance/ month",
 					defaultValue: this.homeInsurancePerMonth,
-					validator: () => true
+					validator: () => true,
+					errorText: "Invalid value"
 				},
 				{
 					id: "renovationClosing",
 					label: "Renovations + Closing ($)",
 					placeholder: "Renovation + closing costs",
 					defaultValue: this.renovationClosing,
-					validator: () => true
+					validator: () => true,
+					errorText: "Invalid value"
 				},
 			]
 		},
@@ -138,7 +141,7 @@ export default {
 					value: `$${downpaymentValue}`
 				},
 				{
-					label: "Cash flow/mo",
+					label: "Net Cash flow/mo",
 					value: `$${monthlyCashFlow}`
 				},
 				{
@@ -159,6 +162,9 @@ export default {
 			this.propertyTaxPerMonth = object.propertyTaxPerMonth
 			this.homeInsurancePerMonth = object.homeInsurancePerMonth
 			this.hoaPerMonth = object.hoaPerMonth
+		},
+		navigateFeatureRequest() {
+			chrome.tabs.create({ active: true, url: 'https://forms.gle/mJFvASGJwSNEBKvx6' });
 		}
 	},
 	components: { TextInput, ZillowSync, DataDisplay, DropdownInput }
@@ -168,7 +174,7 @@ export default {
 <style>
 #app {
 	color: #0a2540;
-	font-family:Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -179,7 +185,15 @@ h1 {
 	display: flex;
 	justify-content: space-between;
 }
+
 .container {
 	display: flex;
+}
+
+.feature-request {
+	cursor: pointer;
+	color: blue;
+	float: right;
+	margin-bottom: 5px;
 }
 </style>

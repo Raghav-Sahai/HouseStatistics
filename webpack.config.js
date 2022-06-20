@@ -15,10 +15,8 @@ const isProduction = process.env.NODE_ENV === "production";
 const config = {
     devtool: 'cheap-module-source-map',
     entry: {
-      // background: ["./src/background/"],
       popup: "./src/popup/",
-      "content": "./src/content/index.js",
-      // "inject-script": "./src/content/injectScript.js",
+      content: "./src/content/index.js",
     },
     output: {
       path: path.resolve(__dirname, "./dist"),

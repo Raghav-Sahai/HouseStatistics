@@ -16,7 +16,7 @@ export default {
     props: {
         id: String,
         label: String,
-        options: Object,
+        options: Array,
         defaultValue: Number
     },
     computed: {

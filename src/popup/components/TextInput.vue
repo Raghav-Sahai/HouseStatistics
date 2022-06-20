@@ -14,7 +14,8 @@ export default {
   props: {
     id: String,
     label: String,
-    validator: Function,
+    validator: String,
+    errorText: String,
     defaultValue: Number,
     placeholder: String | null,
   },
@@ -29,7 +30,7 @@ export default {
         return this.defaultValue;
       },
       set(value) {
-        this.$emit("input", { id: this.id, value });
+        this.$emit("input", { id: this.id, value: value || 0 });
       }
     }
   },

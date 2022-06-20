@@ -11,7 +11,7 @@
 export default {
     name: "DataDisplay",
     props: {
-        data: Object
+        data: Array
     }
 }
 </script>
